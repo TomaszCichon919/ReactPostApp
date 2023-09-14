@@ -7,6 +7,7 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 
 const Post = () => {
@@ -20,10 +21,9 @@ const Post = () => {
   
 
  const { postId } = useParams();
-  console.log('post',postId);
 
   const post = useSelector(state => getPostsById(state, postId));
-  console.log('postData', post)
+
 
   const dispatch = useDispatch();
 
@@ -46,7 +46,9 @@ const Post = () => {
         <h3 className='px-2'>{post.title}</h3>
         </div>
         <div>
+        <Link to={'/post/edit/' + postId} >
         <Button variant="outline-info" className='mx-2'>Edit</Button>
+        </Link>
         <Button variant="outline-danger" className='mx-2' onClick={handleShow}>Delete</Button>
         </div>
         </div>
