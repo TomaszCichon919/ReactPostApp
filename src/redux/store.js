@@ -7,7 +7,7 @@ import postsReducer from './postsRedux';
 export const getAllposts = (state) => state.posts;
 
 const subreducers = {
-    posts: postsReducer,
+  posts: postsReducer,
 }
 
 const reducer = combineReducers(subreducers);

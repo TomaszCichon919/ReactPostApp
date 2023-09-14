@@ -1,6 +1,6 @@
 import styles from './Post.module.scss';
 import { useSelector } from 'react-redux';
-import {  getPostsById, removePost } from '../../../redux/postsRedux'
+import { getPostsById, removePost } from '../../../redux/postsRedux'
 import { useParams } from 'react-router';
 import { Navigate } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
@@ -12,15 +12,15 @@ import { Link } from 'react-router-dom';
 
 const Post = () => {
 
-   
+
   const [show, setShow] = useState(false);
-  
+
   const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true); 
+  const handleShow = () => setShow(true);
 
-  
 
- const { postId } = useParams();
+
+  const { postId } = useParams();
 
   const post = useSelector(state => getPostsById(state, postId));
 
@@ -28,35 +28,36 @@ const Post = () => {
   const dispatch = useDispatch();
 
 
-  const handleDelete = () => {setShow(false)
-    const string =postId.toString()
- dispatch(removePost(string));
+  const handleDelete = () => {
+    setShow(false)
+    const string = postId.toString()
+    dispatch(removePost(string));
   }
 
-   if(!post) return <Navigate to="/" />
+  if (!post) return <Navigate to="/" />
 
 
 
 
-	return (
-    
-    <section>
+  return (
+
+    <section className='px-5'>
       <div className='d-flex justify-content-between'>
-      <div>
-        <h3 className='px-2'>{post.title}</h3>
+        <div>
+          <h3 className='px-2'>{post.title}</h3>
         </div>
         <div>
-        <Link to={'/post/edit/' + postId} >
-        <Button variant="outline-info" className='mx-2'>Edit</Button>
-        </Link>
-        <Button variant="outline-danger" className='mx-2' onClick={handleShow}>Delete</Button>
+          <Link to={'/post/edit/' + postId} >
+            <Button variant="outline-info" className='mx-2'>Edit</Button>
+          </Link>
+          <Button variant="outline-danger" className='mx-2' onClick={handleShow}>Delete</Button>
         </div>
-        </div>
-    <p><span className={styles.caption}>Author:</span>{post.author}</p>
-          <p><span className={styles.caption}>Published:</span>{post.publishedDate}</p>
-          <p>{post.content}</p>
+      </div>
+      <p><span className={styles.caption}>Author:</span>{post.author}</p>
+      <p><span className={styles.caption}>Published:</span>{post.publishedDate}</p>
+      <p>{post.content}</p>
 
-          <Modal show={show} onHide={handleClose}>
+      <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>Are you sure?</Modal.Title>
         </Modal.Header>
@@ -70,7 +71,7 @@ const Post = () => {
           </Button>
         </Modal.Footer>
       </Modal>
-      </section>
+    </section>
   );
 };
 

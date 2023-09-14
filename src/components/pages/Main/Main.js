@@ -12,9 +12,9 @@ const Main = () => {
                     <h1>All Posts</h1>
                 </div>
                 <div>
-                <Link to="/post/add">
-                <Button variant="outline-info">Add Post</Button>
-                </Link>
+                    <Link to="/post/add">
+                        <Button variant="outline-info">Add Post</Button>
+                    </Link>
                 </div>
             </div>
 

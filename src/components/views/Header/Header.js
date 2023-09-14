@@ -1,13 +1,13 @@
-import styles from './Header.module.scss';
+
 import NavBar from '../NavBar/NavBar'
 
 const Header = () => {
-    return (
-       
-       <div className={styles.container}>
-      <NavBar/>
-        </div>
-            )
+  return (
+
+    <div>
+      <NavBar />
+    </div>
+  )
 }
 
 export default Header;

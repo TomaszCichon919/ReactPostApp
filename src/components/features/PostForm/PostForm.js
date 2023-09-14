@@ -1,8 +1,6 @@
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
 
 const PostForm = ({ action, actionText, ...props }) => {
     const [title, setTitle] = useState(props.title || '');
