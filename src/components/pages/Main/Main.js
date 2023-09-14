@@ -1,5 +1,6 @@
 import Posts from '../../features/Posts/Posts';
 import Button from 'react-bootstrap/Button';
+import { Link } from 'react-router-dom';
 
 
 const Main = () => {
@@ -11,7 +12,9 @@ const Main = () => {
                     <h1>All Posts</h1>
                 </div>
                 <div>
-                    <Button variant="outline-info">Add Post</Button>
+                <Link to="/post/add">
+                <Button variant="outline-info">Add Post</Button>
+                </Link>
                 </div>
             </div>
 

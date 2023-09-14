@@ -1,36 +1,74 @@
 import styles from './Post.module.scss';
-//import { useSelector } from 'react-redux';
-// import { getColumnsByList, getListById } from '../../redux/listsRedux'
-// import { useParams } from 'react-router';
-//import { Navigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import {  getPostsById, removePost } from '../../../redux/postsRedux'
+import { useParams } from 'react-router';
+import { Navigate } from 'react-router-dom';
+import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 
 
 const Post = () => {
- // const { postId } = useParams();
-    
-  //const posts = useSelector(state => getColumnsByList(state, listId));
 
-  //const listData = useSelector(state => getListById(state, listId));
+   
+  const [show, setShow] = useState(false);
+  
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true); 
 
-  //if(!listData) return <Navigate to="/" />
+  
+
+ const { postId } = useParams();
+  console.log('post',postId);
+
+  const post = useSelector(state => getPostsById(state, postId));
+  console.log('postData', post)
+
+  const dispatch = useDispatch();
+
+
+  const handleDelete = () => {setShow(false)
+    const string =postId.toString()
+ dispatch(removePost(string));
+  }
+
+   if(!post) return <Navigate to="/" />
+
+
+
 
 	return (
     
-    <div className={styles.list}>
-      <header className={styles.header}>
-        <h2 className={styles.title}>post title</h2>
-      </header>
-      <p className={styles.description}>post</p>
-    
-      {/* <section className={styles.columns}>
-        {columns.map(column =>
-          <Column
-            key={column.id}
-            {...column}  />
-        )}
+    <section>
+      <div className='d-flex justify-content-between'>
+      <div>
+        <h3 className='px-2'>{post.title}</h3>
+        </div>
+        <div>
+        <Button variant="outline-info" className='mx-2'>Edit</Button>
+        <Button variant="outline-danger" className='mx-2' onClick={handleShow}>Delete</Button>
+        </div>
+        </div>
+    <p><span className={styles.caption}>Author:</span>{post.author}</p>
+          <p><span className={styles.caption}>Published:</span>{post.publishedDate}</p>
+          <p>{post.content}</p>
+
+          <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Are you sure?</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>The opreation will completly remove the post. The opration can not be reversed.</Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Close
+          </Button>
+          <Button variant="danger" onClick={handleDelete}>
+            Delete
+          </Button>
+        </Modal.Footer>
+      </Modal>
       </section>
-      <ColumnForm listId={listId} /> */}
-    </div>
   );
 };
 
