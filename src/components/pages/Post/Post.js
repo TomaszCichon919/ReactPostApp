@@ -44,7 +44,7 @@ const Post = () => {
     <section className='px-5'>
       <div className='d-flex justify-content-between'>
         <div>
-          <h3 className='px-2'>{post.title}</h3>
+          <h3 className='py-4'>{post.title}</h3>
         </div>
         <div>
           <Link to={'/post/edit/' + postId} >
@@ -55,7 +55,7 @@ const Post = () => {
       </div>
       <p><span className={styles.caption}>Author:</span>{post.author}</p>
       <p><span className={styles.caption}>Published:</span>{post.publishedDate}</p>
-      <p>{post.content}</p>
+      <p className='pt-4'>{post.content}</p>
 
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>

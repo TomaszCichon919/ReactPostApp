@@ -17,7 +17,6 @@ const Main = () => {
                     </Link>
                 </div>
             </div>
-
             <Posts />
         </div>
     )
