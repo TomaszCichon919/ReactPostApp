@@ -7,6 +7,8 @@ import { FormControl } from 'react-bootstrap';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { useForm } from "react-hook-form";
+import { getAllCategories } from '../../../redux/store';
+import { useSelector } from 'react-redux';
 
 const PostForm = ({ action, actionText, ...props }) => {
     const [title, setTitle] = useState(props.title || '');
@@ -16,7 +18,12 @@ const PostForm = ({ action, actionText, ...props }) => {
     const [content, setContent] = useState(props.content || '');
     const [contentError, setContentError] = useState(false);
     const [dateError, setDateError] = useState(false);
+    const [category, setCategory] = useState(props.category || '');
     const { register, handleSubmit: validate, formState: { errors } } = useForm();
+
+    const categories = useSelector(getAllCategories);
+    //console.log('categories', categories);
+
 
     const handleChange = (content) => {
       setContent(content);
@@ -24,11 +31,16 @@ const PostForm = ({ action, actionText, ...props }) => {
     const handleDateChange = (date) => {
       setPublishedDate(date);
     };
+
+    const handleSelectChange = (e) => {
+      console.log('selected', e.target.value);
+      setCategory(e.target.value);
+    };
     const handleSubmit = () => {
       setContentError(!content)
       setDateError(!publishedDate)
       if(content && publishedDate) {
-        action({ title, author, publishedDate, shortDescription, content });
+        action({ title, author, publishedDate, shortDescription, content, category });
       };
 
     };
@@ -48,9 +60,20 @@ const PostForm = ({ action, actionText, ...props }) => {
       </Form.Group>
 
       <Form.Group className="mb-3" controlId="published">
-        <Form.Label>Published</Form.Label>
+        <Form.Label><p>Published</p></Form.Label>
         <DatePicker selected={publishedDate}  dateFormat="dd/MM/yyyy" onChange={handleDateChange} />
         {dateError && <small className="d-block form-text text-danger mt-2">Date can't be empty</small>}
+      </Form.Group>
+
+      <Form.Group className="mb-3" controlId="category">
+        <Form.Label>category</Form.Label>
+        <Form.Select aria-label="Default select example"  value={category}
+        onChange={handleSelectChange}>
+        <option>Open this select menu</option>
+        {categories.map(category => (
+      <option key={category.id} value={category.title}>{category.title}</option>
+      ))}
+    </Form.Select>
       </Form.Group>
 
       <Form.Group className="mb-3" controlId="description">

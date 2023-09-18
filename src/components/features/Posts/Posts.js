@@ -25,6 +25,7 @@ const Posts = () => {
           <h3 className='pt-2'>{post.title}</h3>
           <p><span className={styles.caption}>Author:</span>{post.author}</p>
           <p><span className={styles.caption}>Published:</span>{DateToString(post.publishedDate)}</p>
+          <p><span className={styles.caption}>Category:</span>{post.category}</p>
           <p>{post.shortDescription}</p>
           <Link key={post.id} to={'/post/' + post.id}><Button className='mb-3' variant="primary">Read More</Button></Link>
           </Col>

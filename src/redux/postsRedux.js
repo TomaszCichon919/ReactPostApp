@@ -10,7 +10,14 @@ export const addPost = payload => ({ type: ADD_POST, payload });
 export const removePost = payload => ({ type: REMOVE_POST, payload });
 export const editPost = payload => ({ type: EDIT_POST, payload });
 export const getPostsById = ({ posts }, PostId) => posts.find(post => post.id === PostId);
+//export const getPostByCategory = ({posts}, categoryTitle) => posts.find(post => post.category === categoryTitle);
+export const getPostByCategory = ({posts}, categoryTitle) => posts.filter(post => post.category === categoryTitle);
 
+// export const getFilteredCards = ({ cards, searchString }, columnId) => cards
+//   .filter(card => card.columnId === columnId && strContains(card.title, searchString));
+
+//   export const getFavoriteCards = ({cards}) => cards
+//   .filter(card => card.isFavorite === true);
 
 
 // action creators

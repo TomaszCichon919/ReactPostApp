@@ -56,6 +56,7 @@ const Post = () => {
       </div>
       <p><span className={styles.caption}>Author:</span>{post.author}</p>
       <p><span className={styles.caption}>Published:</span>{DateToString(post.publishedDate)}</p>
+      <p><span className={styles.caption}>Category:</span>{post.category}</p>
       <p className='pt-4'dangerouslySetInnerHTML={{ __html: post.content }}/>
 
       <Modal show={show} onHide={handleClose}>
