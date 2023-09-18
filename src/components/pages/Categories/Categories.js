@@ -2,20 +2,26 @@ import styles from './Categories.module.scss';
 import { Link } from 'react-router-dom';
 import { getAllCategories } from '../../../redux/store';
 import { useSelector } from 'react-redux';
+import Stack from 'react-bootstrap/Stack';
+import Container from 'react-bootstrap/Container';
 
 const Categories = () => {
 
     const categories = useSelector(getAllCategories);
     return (
        
-       <div className={styles.container}>
+       <Container>
       <h1>Categories</h1>
-      {categories.map(categorie => (
-       <Link to={"/categories/" + categorie.title}>
-       <p>{categorie.title}</p>
+      <Stack gap={1}>
+      {categories.map(category => (
+        <div className="p-2">
+       <Link key={category.id} to={"/categories/" + category.title}>
+       <p className={styles.wrapper}>{category.title}</p>
    </Link>
+   </div>
       ))}
-        </div>
+       </Stack>
+        </Container>
             )
 }
 

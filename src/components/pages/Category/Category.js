@@ -1,5 +1,4 @@
 import styles from './Category.module.scss';
-import { getAllCategories } from '../../../redux/store';
 import { useSelector } from 'react-redux';
 import { getCategoryByTitle } from '../../../redux/categoriesRedux';
 import { useParams } from 'react-router';
@@ -9,11 +8,12 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
 import { Link } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 import DateToString from '../../../utils/DateToString/DateToString.js';
 
 const Category = () => {
 
-  //const categories = useSelector(getAllCategories);
+
 
   const { categoryTitle } = useParams();
     
@@ -21,14 +21,13 @@ const selectedPosts = useSelector(state => getPostByCategory(state, categoryTitl
 
   const selectedCategory = useSelector(state => getCategoryByTitle(state, categoryTitle));
 
-console.log('selectededede', selectedCategory);
-console.log('posts', selectedPosts);
-  //if(!listData) return <Navigate to="/" />
+  if(!selectedPosts) return <Navigate to="/" />
 
     return (
        
        <div>
       <h1>{selectedCategory.title}</h1>
+      <Container className='mb-4'>
       <Row>
       {selectedPosts.map(post => (
         <Col key={post.id} xs={12} md={3} className={styles.wrapper}>
@@ -41,6 +40,7 @@ console.log('posts', selectedPosts);
           </Col>
       ))}
       </Row>
+      </Container>
         </div>
             )
 }

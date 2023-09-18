@@ -22,7 +22,6 @@ const PostForm = ({ action, actionText, ...props }) => {
     const { register, handleSubmit: validate, formState: { errors } } = useForm();
 
     const categories = useSelector(getAllCategories);
-    //console.log('categories', categories);
 
 
     const handleChange = (content) => {
@@ -33,7 +32,6 @@ const PostForm = ({ action, actionText, ...props }) => {
     };
 
     const handleSelectChange = (e) => {
-      console.log('selected', e.target.value);
       setCategory(e.target.value);
     };
     const handleSubmit = () => {
@@ -60,13 +58,15 @@ const PostForm = ({ action, actionText, ...props }) => {
       </Form.Group>
 
       <Form.Group className="mb-3" controlId="published">
-        <Form.Label><p>Published</p></Form.Label>
+        <Form.Label className="pb-2">Published</Form.Label>
+        <div>
         <DatePicker selected={publishedDate}  dateFormat="dd/MM/yyyy" onChange={handleDateChange} />
         {dateError && <small className="d-block form-text text-danger mt-2">Date can't be empty</small>}
+        </div>
       </Form.Group>
 
       <Form.Group className="mb-3" controlId="category">
-        <Form.Label>category</Form.Label>
+        <Form.Label>Category</Form.Label>
         <Form.Select aria-label="Default select example"  value={category}
         onChange={handleSelectChange}>
         <option>Open this select menu</option>
