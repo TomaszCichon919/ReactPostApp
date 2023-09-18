@@ -1,3 +1,4 @@
+import DateToString from "../utils/DateToString/DateToString";
 const initialState = {
     posts: [
         {
@@ -5,7 +6,7 @@ const initialState = {
           title: 'Article title',
           shortDescription: 'Short description of the article...',
           content: 'Main content of the article',
-          publishedDate: '09-03-2023',
+          publishedDate: new Date(2023, 9, 9),
           author: 'John Doe'
         },
         {
@@ -13,7 +14,7 @@ const initialState = {
           title: 'Article title 2',
           shortDescription: 'Short description of the article...',
           content: 'Main content of the article',
-          publishedDate: '09-09-2023',
+          publishedDate: new Date(2023, 9, 9),
           author: 'John Doe'
         },
         {
@@ -21,7 +22,7 @@ const initialState = {
           title: 'Article title 3',
           shortDescription: 'Short description of the article...',
           content: 'Main content of the article',
-          publishedDate: '10-09-2023',
+          publishedDate: new Date(2023, 9, 9),
           author: 'John Doe'
         },
         {
@@ -29,7 +30,7 @@ const initialState = {
           title: 'Article title 4',
           shortDescription: 'Short description of the article...',
           content: 'Main content of the article',
-          publishedDate: '10-10-2023',
+          publishedDate: new Date(2023, 9, 9),
           author: 'John Doe'
         },
     ]

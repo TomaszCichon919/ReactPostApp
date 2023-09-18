@@ -6,6 +6,7 @@ import { useSelector } from 'react-redux';
 import { getAllposts } from '../../../redux/store'
 import { Link } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
+import DateToString from '../../../utils/DateToString/DateToString.js';
 
 
 
@@ -23,7 +24,7 @@ const Posts = () => {
         <Col key={post.id} xs={12} md={3} className={styles.wrapper}>
           <h3 className='pt-2'>{post.title}</h3>
           <p><span className={styles.caption}>Author:</span>{post.author}</p>
-          <p><span className={styles.caption}>Published:</span>{post.publishedDate}</p>
+          <p><span className={styles.caption}>Published:</span>{DateToString(post.publishedDate)}</p>
           <p>{post.shortDescription}</p>
           <Link key={post.id} to={'/post/' + post.id}><Button className='mb-3' variant="primary">Read More</Button></Link>
           </Col>

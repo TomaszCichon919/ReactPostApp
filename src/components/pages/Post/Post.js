@@ -8,6 +8,7 @@ import Modal from 'react-bootstrap/Modal';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
+import DateToString from '../../../utils/DateToString/DateToString.js';
 
 
 const Post = () => {
@@ -54,8 +55,8 @@ const Post = () => {
         </div>
       </div>
       <p><span className={styles.caption}>Author:</span>{post.author}</p>
-      <p><span className={styles.caption}>Published:</span>{post.publishedDate}</p>
-      <p className='pt-4'>{post.content}</p>
+      <p><span className={styles.caption}>Published:</span>{DateToString(post.publishedDate)}</p>
+      <p className='pt-4'dangerouslySetInnerHTML={{ __html: post.content }}/>
 
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
