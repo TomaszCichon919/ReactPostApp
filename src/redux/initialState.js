@@ -6,7 +6,7 @@ const initialState = {
           title: 'Article title',
           shortDescription: 'Short description of the article...',
           content: 'Main content of the article',
-          category: 'Movies',
+          category: 'News',
           publishedDate: new Date(2023, 9, 9),
           author: 'John Doe'
         },

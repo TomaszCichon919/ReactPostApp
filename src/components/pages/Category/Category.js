@@ -8,7 +8,6 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
 import { Link } from 'react-router-dom';
-import { Navigate } from 'react-router-dom';
 import DateToString from '../../../utils/DateToString/DateToString.js';
 
 const Category = () => {
@@ -21,12 +20,12 @@ const selectedPosts = useSelector(state => getPostByCategory(state, categoryTitl
 
   const selectedCategory = useSelector(state => getCategoryByTitle(state, categoryTitle));
 
-  if(!selectedPosts) return <Navigate to="/" />
 
     return (
        
        <div>
       <h1>{selectedCategory.title}</h1>
+      {!selectedPosts.length && <p className="d-block form-text mt-2">No posts found in this category...</p>}   
       <Container className='mb-4'>
       <Row>
       {selectedPosts.map(post => (

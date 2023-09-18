@@ -14,9 +14,9 @@ const Categories = () => {
       <h1>Categories</h1>
       <Stack gap={1}>
       {categories.map(category => (
-        <div className="p-2">
+        <div className="p-2 bg-light border border-secondary rounded">
        <Link key={category.id} to={"/categories/" + category.title}>
-       <p className={styles.wrapper}>{category.title}</p>
+       <p className="px-2">{category.title}</p>
    </Link>
    </div>
       ))}
